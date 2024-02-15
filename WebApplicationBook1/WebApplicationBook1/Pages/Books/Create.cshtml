@@ -1,0 +1,76 @@
+﻿@page
+@model WebApplicationBook1.Pages.Books.CreateModel
+@{
+}
+
+<style>
+    /* Add your custom styles here */
+    .center-heading {
+        text-align: center;
+    }
+    .alert {
+        margin-top: 20px;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+
+    .btn-submit {
+        margin-top: 20px;
+    }
+</style>
+
+<br />
+<h2 class="center-heading">Add Book</h2>
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.errorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+    </div>
+}
+
+<form method="post">
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label form-label">Name of the Book</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="name" values="@Model.binfo.BookName" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label form-label">Name of the Author</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="author" values="@Model.binfo.AuthorName" />
+        </div>
+    </div>
+
+    @if (Model.SuccessMessage.Length > 0)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>@Model.SuccessMessage</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary btn-submit" href="/">Submit</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary btn-submit" href="/Books" role="button">Cancel</a>
+        </div>
+    </div>
+
+</form>

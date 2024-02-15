@@ -1,0 +1,32 @@
+﻿@page
+@using System.Data.SqlClient
+@{
+
+    try
+    {
+        String id = Request.Query["BookId"];
+
+        if (!string.IsNullOrEmpty(id))
+        {
+            String connectionString = "Data Source=SHADAN\\SQLEXPRESS;Initial Catalog=BookList;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                String sql = "DELETE FROM BOOK WHERE BookId = @BookId";
+
+                using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
+                {
+                    sqlCommand.Parameters.AddWithValue("@BookId", id);
+                    sqlCommand.ExecuteNonQuery();
+                }
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        // Handle the exception (you may want to log it or display an error message)
+    }
+    Response.Redirect("/Books/Index");
+
+}

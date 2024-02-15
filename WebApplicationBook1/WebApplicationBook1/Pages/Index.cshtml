@@ -1,0 +1,59 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+    /* Add your custom styles here */
+    .center-heading {
+        text-align: center;
+    }
+
+    .add-book-button {
+        float: right;
+        margin-bottom: 10px;
+    }
+
+    .table-with-borders {
+        border: 1px solid #ddd; /* Add borders to the table */
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .table-with-borders th, .table-with-borders td {
+            border: 1px solid #ddd; /* Add borders to table cells */
+            padding: 8px;
+            text-align: left;
+        }
+</style>
+
+<br />
+<h2 class="center-heading">Book Details</h2>
+<a class='btn btn-primary btn-sm add-book-button' href='/Books/Create'>Add Book</a>
+
+<table class="table-with-borders">
+    <thead>
+        <tr>
+            <th>BookId</th>
+            <th>Book Name</th>
+            <th>Author Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.ListBook)
+        {
+            <tr>
+                <td>@item.BookId</td>
+                <td>@item.BookName</td>
+                <td>@item.AuthorName</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Books/Delete?BookId=@item.BookId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
